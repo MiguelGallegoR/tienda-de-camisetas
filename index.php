@@ -13,7 +13,7 @@
             <div id="logo">
                 <img src="assets/img/camiseta.png" alt="Camiseta Logo">
                 <a href="index.php">
-                    Tienda de camisetas de Miguel
+                    Tienda de camisetas 
                 </a>
             </div>
         </header>
