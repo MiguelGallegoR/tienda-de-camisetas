@@ -2,7 +2,7 @@
 require_once 'load_auto.php';
 require_once 'views/layout/header.php';
 require_once 'views/layout/sidebar.php';
-require_once 'views/layout/footer.php';
+
 
 
 if(isset($_GET['controller'])){
@@ -28,3 +28,5 @@ if(class_exists($nombre_controllador)){
 }else{
     echo 'La página que buscas no existe';
 }
+
+require_once 'views/layout/footer.php';
