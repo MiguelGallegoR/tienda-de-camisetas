@@ -1,5 +1,9 @@
 <?php
 require_once 'load_auto.php';
+require_once 'views/layout/header.php';
+require_once 'views/layout/sidebar.php';
+require_once 'views/layout/footer.php';
+
 
 if(isset($_GET['controller'])){
     $nombre_controllador = $_GET['controller'].'Controller';
