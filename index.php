@@ -1,8 +1,10 @@
 <?php
 require_once 'load_auto.php';
+require_once 'config/db.php';
 require_once 'config/parameters.php';
 require_once 'views/layout/header.php';
 require_once 'views/layout/sidebar.php';
+session_start();
 
 function show_error(){
     $error= new errorController();
