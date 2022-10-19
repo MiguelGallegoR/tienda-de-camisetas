@@ -12,18 +12,65 @@ class usuarioController{
 
     public function save(){
         if(isset($_POST)){
-            $usuario = new Usuario();
-            $usuario->setNombre($_POST['nombre']);
-            $usuario->setApellidos($_POST['apellidos']);
-            $usuario->setEmail($_POST['email']);
-            $usuario->setPassword($_POST['password']);
+
+            $errores = array();
+
+            $nombre = isset($_POST['nombre']) ? ($_POST['nombre']) : false;
+            $apellidos = isset($_POST['apellidos']) ? ($_POST['apellidos']) : false;
+            $email = isset($_POST['email']) ? ($_POST['email']) : false;
+            $password = isset($_POST['password']) ? ($_POST['password']) : false;
             
-            $save = $usuario->save();
-            if($save){
-               $_SESSION['register'] = "complete";
+            if(!empty($nombre)&& !is_numeric($nombre) && !preg_match("/[0-9]/",$nombre)){
+                $nombre_validado = true;
+            }else{
+                  $nombre_validado = false;
+                $errores['nombre'] = 'El nombre no es valido';
+            }
+              //Validar apellidos
+             if(!empty($apellidos)&& !is_numeric($apellidos) && !preg_match("/[0-9]/",$apellidos)){
+                $apellidos_validado = true;
+            }else{
+                  $apellidos_validado = false;
+                $errores['apellidos'] = 'Los apellidos no son validos';
+            }
+              //Validar email
+             if(!empty($email)&& filter_var($email, FILTER_VALIDATE_EMAIL )){
+                $email_validado = true;
+            }else{
+                  $email_validado = false;
+                $errores['email'] = 'El email no es valido';
+            }
+              //Validar contraseña
+            if(!empty($password)){
+                $password_validado = true;
+              }else{
+                  $password_validado = false;
+                $errores['password'] = 'La password no es valida';
+            }
+
+            $guardar_usuario = false;
+
+
+            if(count($errores) == 0){
+                $guardar_usuario=true;
+                
+                $usuario = new Usuario();
+                $usuario->setNombre($nombre);
+                $usuario->setApellidos($apellidos);
+                $usuario->setEmail($email);
+                $usuario->setPassword($password);
+                
+                $save = $usuario->save();
+                if($save){
+                   $_SESSION['register'] = "complete";
+                }else{
+                    $_SESSION['register'] = "failed";
+                }
             }else{
                 $_SESSION['register'] = "failed";
             }
+
+           
         }else{
             $_SESSION['register'] = "failed";
         }
