@@ -3,10 +3,10 @@
 <?php if(isset($_SESSION['register']) && $_SESSION['register'] == 'complete'): ?>
    <strong>Registro completado correctamente</strong>
 
-<?php else: ?>
+<?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed'): ?>
     <strong>Registro fallido</strong>
 <?php endif; ?>
-
+<?php Utils::deleteSession('register'); ?>
 <form action="<?=base_url?>/usuario/save" method="POST">
     <label for="nombre">Nombre</label>
     <input type="text" name="nombre" required >
