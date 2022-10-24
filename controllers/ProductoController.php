@@ -28,8 +28,7 @@ class productoController{
             $precio = isset($_POST['precio']) ? ($_POST['precio']) : false;
             $stock = isset($_POST['stock']) ? ($_POST['stock']) : false;
             $categoria = isset($_POST['categoria']) ? ($_POST['categoria']) : false;
-           //$oferta? = isset($_POST['nombre']) ? ($_POST['nombre']) : false;
-           //$imagen? = isset($_POST['nombre']) ? ($_POST['nombre']) : false;
+           
 
             if($nombre && $descripcion && $precio && $stock && $categoria){
                 $producto = new Producto();
@@ -38,6 +37,18 @@ class productoController{
                 $producto->setPrecio($precio);
                 $producto->setStock($stock);
                 $producto->setCategoriaId($categoria);
+
+                $file = $_FILES['imagen'];
+                $filename = $file['name'];
+                $mimetype = $file['type'];
+
+                if($mimetype == "image/jpg" || $mimetype == 'image/jpeg' || $mimetype == 'image/png' || $mimetype == 'image/gif'){
+                    if(!is_dir('uploads/images')){
+                        mkdir('uploads/images', 0777, true);
+                    }
+                    $producto->setImagen($filename);
+                    move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
+                }
 
                 $save = $producto->save();
                 if($save){
