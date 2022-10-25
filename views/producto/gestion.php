@@ -17,7 +17,7 @@
 <?php elseif(isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed'): ?>
     <strong class="alert_red">Fallo al eliminar producto</strong>
 <?php endif; ?>
-<?php Utils::deleteSession('producto'); ?>
+<?php Utils::deleteSession('delete'); ?>
 
 <table>
     <tr>
