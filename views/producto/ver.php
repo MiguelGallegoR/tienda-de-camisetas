@@ -10,9 +10,9 @@
         </div>
                 
         <div class="data">
-            <p class="price"><?=$pro->precio?>$</p>
             <p class="description"><?=$pro->descripcion?></p>
-            <a href="" class="button">Comprar</a>
+            <p class="price"><?=$pro->precio?>$</p>
+            <a href="<?=base_url?>carrito/add&id=<?=$pro->id?>" class="button">Comprar</a>
         </div>
     </div>
 
