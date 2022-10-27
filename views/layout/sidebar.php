@@ -3,14 +3,15 @@
     <div id="carrito" class="block_aside">
         <h3>Mi carrito</h3>
         <ul>
-            <li><a href="<?=base_url?>carrito/index"> Productos </a></li>
-            <li><a href="<?=base_url?>carrito/index"> Total </a></li>
+            <?php $stats = Utils::statsCarrito(); ?>
+            <li><a href="<?=base_url?>carrito/index"> Productos (<?= $stats['count']?>)</a></li>
+            <li><a href="<?=base_url?>carrito/index"> Total <?= $stats['total']?> $</a></li>
             <li><a href="<?=base_url?>carrito/index"> Ver carrito </a></li>
         </ul>
     </div>
     <div id="login" class="block_aside">
 
-    <?php if(!isset($_SESSION['identity'])):?>
+        <?php if(!isset($_SESSION['identity'])):?>
         <h3>Entrar a la web</h3>
         <form action="<?=base_url?>usuario/login" method="post">
             <label for="email">Email</label>
@@ -19,9 +20,9 @@
             <input type="password" name="password">
             <input type="submit" value="Enviar">
         </form>
-    <?php else:?>
+        <?php else:?>
             <h3><?=$_SESSION['identity']->nombre?> <?=$_SESSION['identity']->apellidos?></h3>
-    <?php endif;?>
+        <?php endif;?>
 
         <ul>
             
