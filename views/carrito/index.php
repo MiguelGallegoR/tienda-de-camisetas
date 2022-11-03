@@ -8,8 +8,9 @@
         <th>Unidades</th>
     </tr>
     <?php 
-        foreach($carrito as $indice => $elemento): 
+        foreach((array) $carrito as $indice => $elemento): 
         $producto = $elemento['producto'];
+        
     ?>
 
     <tr>
