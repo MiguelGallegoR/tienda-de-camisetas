@@ -15,7 +15,7 @@ class productoController{
             $producto = new Producto();
             $producto->setId($id);
             
-            $pro = $producto->getOne();
+            $product = $producto->getOne();
             
         }
 
