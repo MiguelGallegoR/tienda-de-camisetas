@@ -48,4 +48,20 @@ class Utils{
 
         return $stats;
     }
+
+    public static function showStatus($status){
+        $value = 'pendiente';
+        if($status == 'confirm'){
+            $value = 'pendiente';
+        }elseif($status == 'preparation'){
+            $value = 'En preparación';
+        }elseif($status == 'ready'){
+            $value = 'Preparado para enviar';
+        }elseif($status == 'sended'){
+            $value = 'Enviado';
+        }
+
+        return $value;
+
+    }
 }
